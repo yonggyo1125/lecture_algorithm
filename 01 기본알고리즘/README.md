@@ -111,3 +111,67 @@ public class Max3 {
 
 ---
 # 반복
+
+## 1부터 n까지 정수 합 구하기 
+
+```java
+package chap01;
+import java.util.Scanner;
+
+public class SumWhile {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(Systen.in);
+
+        System.out.println("1부터 n까지의 합을 구합니다.");
+        System.out.println("n의 값: ");
+        int n = stdIn.nextInt();
+
+        int sum = 0;
+        int i = 1;
+
+        while (i <= n) {
+            sum += i;
+            i++;
+        }
+        System.out.println("1부터 " + n + "까지의 합은 " + sum + "입니다.");
+    }
+}
+```
+
+### while문 반복 
+
+- while문은 실행 전에 반복을 계속할지 판단
+- **사전 판단 반복 구조**라고 부릅니다.
+
+
+### for문 반복
+
+> 하나의 변수를 사용하는 반복문은 while문보다 for문을 사용하는 것이 좋다.
+
+```java
+package chap01;
+import java.util.Scanner;
+
+public class SumFor {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+
+        System.out.println("1부터 n까지의 합을 구합니다.");
+        System.out.print("n의 값 : ");
+        int n = stdIn.nextInt();
+
+        int sum = 0;
+
+        for(int i = 1; i <= n; i++)
+            sum += i;
+        
+        System.out.println("1부터 " + n + "까지의 합은 " + sum + "입니다.");
+    }
+}
+```
+
+## 양수만 입력하기 
+
+```java
+
+```
