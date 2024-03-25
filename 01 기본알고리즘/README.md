@@ -204,3 +204,38 @@ public class SumForPos {
 >
 > 사전 판단 반복문인 while문과 for문은 처음에 제어식을 평가한 결과가 0이면 루프 본문은 한 번도 실행되지 않습니다. 이와 달리 반복문인 do문은 루프 본문이 반드시 한번은 실행됩니다. 
 
+## 구조적 프로그래밍(structured programming)
+
+- 하나의 입구와 하나의 출구를 가진 구성 요소만을 계층적으로 배치하여 프로그램을 구성하는 방법
+- 순차, 선택, 반복이라는 3종류의 제어 흐름을 사용
+
+
+```java
+package chap01;
+import java.util.Scanner;
+
+public class Digits {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+        int no;
+
+        System.out.println("2자리의 정수를 입력하세요.");
+
+        do {
+            System.out.print("입력: ");
+            no = stdIn.nextInt();
+        } while (no < 10 || no > 99);
+
+        System.out.println("변수 no의 값은 " + no + "가(이) 되었습니다.");
+    }
+}
+```
+
+### 논리 연산자의 단락회로 평가 
+
+> 논리 연산의 식 전체를 평가한 결과가 왼쪽 피연산자의 평가 결과만으로 정확해지는 경우 오른쪽 피연산자의 평가를 수행하지 않는 것 
+
+### 드모르간 법칙 
+
+- 논리 부정 연산자는 피연산자가 true면 false를, false면 true를 반환하는 단항 연산자
+- 각 조건을 부정하고 논리곱을 논리합으로, 논리합을 논리곱으로 바꾸고 다시 전체를 부정하면 원래의 조건과 같다
