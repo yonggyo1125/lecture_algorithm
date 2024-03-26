@@ -235,7 +235,77 @@ public class Digits {
 
 > 논리 연산의 식 전체를 평가한 결과가 왼쪽 피연산자의 평가 결과만으로 정확해지는 경우 오른쪽 피연산자의 평가를 수행하지 않는 것 
 
-### 드모르간 법칙 
+### 드모르간 법칙(De Morgan's laws)
 
 - 논리 부정 연산자는 피연산자가 true면 false를, false면 true를 반환하는 단항 연산자
-- 각 조건을 부정하고 논리곱을 논리합으로, 논리합을 논리곱으로 바꾸고 다시 전체를 부정하면 원래의 조건과 같다
+- 각 조건을 부정하고 논리곱을 논리합으로, 논리합을 논리곱으로 바꾸고 다시 전체를 부정하면 원래의 조건과 같다. 
+- x && y와 !(!x || !y)는 같습니다.
+- x || y와 !(!x && !y)는 같습니다.
+
+```
+no < 10 || no > 99 조건은 !(no >= 10 && no <= 99)와 같다.
+```
+
+![image9](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/01%20%EA%B8%B0%EB%B3%B8%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/images/9.png)
+
+
+## 다중 루프 
+
+- 반복문 안에서 다시 반복할 수 있습니다.
+- 반복 루프가 중첩되는 수준에 따라 **이중 루프, 삼중 루프**라고 합니다.
+
+### 곱셈표
+
+```java
+package chap01;
+
+public class Multi99Table {
+    public static void main(String[] args) {
+        System.out.println("---- 곱셈표 ----");
+
+        for (int i = 1; i <= 9; i++) {
+            for (int j = 1; j <= 9; j++) {
+                System.out.printf("%3d", i * j);
+            }
+            System.out.println();
+        }
+    }
+}
+```
+
+![image10](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/01%20%EA%B8%B0%EB%B3%B8%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/images/10.png)
+
+> 곱셈표를 출력하는 순서도
+
+## 직각 이등변 삼각형 출력 
+
+
+```java
+package chap01;
+import java.util.Scanner;
+
+public class TriangleLB {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+        int n;
+
+        System.out.println("왼쪽 아래가 직각인 이등변 삼각형을 출력합니다.");
+
+        do {
+            System.out.print("몇 단 삼각형입니까? : ");
+            n = stdIn.nextInt();
+        } while(n <= 0>);
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+```
+
+- 삼각형을 위부터 1행 ~ n행이라고 하면 i행에 i개의 기호 문자 *를 출력하고 마지막 n행에 n개의 기호 문자 *를 출력합니다.
+
+![image11](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/01%20%EA%B8%B0%EB%B3%B8%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/images/11.png)
