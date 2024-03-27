@@ -49,6 +49,58 @@ a = new int[5];
 
 ### 기본값 
 
+```java
+package chap02
+
+public class IntArray {
+    public static void main(String[] args) {
+        int[] a = new int[5];  // 배열의 선언
+
+        a[1] = 37;   // a[1]에 37 대입
+        a[2] = 51;   // a[2]에 51 대입 
+        a[4] = a[1] * 2;   // a[4]에 a[1] * 2, 즉 74 대입
+
+        for (int i = 0; i < a.length; i++) {
+            System.out.println("a[" + i + "] = " + a[i]);
+        }
+    }
+}
+```
+
+```
+실행 결과 
+a[0] = 0
+a[1] = 37
+a[2] = 51
+a[3] = 0
+a[4] = 74
+```
+> 배열의 자료형
+>
+> 배열 a의 각 요소의 자료형은 int형 배열이고 배열 a의 자료형은 int[5]형 입니다. 다시말해 a[0]은 int형, a는 int[5]형 입니다.<br>
+> 예를 들어 int a = new int[5]라고 선언하면 배열 a는 a[0], a[1], a[2], a[3], a[4]로 총 5개의 저장 공간을 차지합니다.
+
+```java
+int[] a; // 선언하기
+a = new int[3]; // 참조하기 
+```
+
+![image2](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/02%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/images/2.png)
+
+
+### 배열의 초기값 
+
+|형|초기값|
+|---|-----|
+|byte|(byte)0|
+|short|(short)0|
+|int|0|
+|long|0L|
+|float|0.0f|
+|double|0.0|
+|char|'\u0000'|
+|boolean|false|
+|참조형|null|
 
 
 # 클래스
