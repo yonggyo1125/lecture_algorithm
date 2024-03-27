@@ -103,4 +103,69 @@ a = new int[3]; // 참조하기
 |참조형|null|
 
 
+> [참고]값을 대입하지 않은 지역 변수 
+>
+> 메서드 안에 선언한 지역 변수는 초깃값으로 초기화되지 않습니다. 즉, 변수를 만들어도 초기화는 수행되지 않습니다. java에서는 초기화나 대입에 의해 값이 넣어져 있지 않은 변수로부터는 값을 꺼낼 수 없습니다. 따라서 다음 프로그램은 컴파일 오류가 발생합니다.
+
+```java
+int a;  //  값이 들어 있지 않은 변수에서 값을 꺼내려고 합니다.
+System.out.println("a 값은 " + a + "입니다."); // 컴파일 오류
+```
+
+### 배열 요소값을 초기화하여 배열 선언하기 
+
+- 배열 본체의 생성과 동시에 각 요소의 초기화가 가능 
+
+```java
+package chap02;
+
+public class IntArrayInit {
+    public static void main(String[] args) {
+        int[] a = {1, 2, 3, 4, 5}; // 배열 초기화에 의해 생성
+
+        for (int i = 0; i < a.length; i++) {
+            System.out.println("a[" + i + "] = " + a[i]);
+        }
+    }
+}
+```
+
+
+### 배열의 복제
+
+```
+배열이름.clone()
+```
+
+```java
+package chap02;
+
+public class CloneArray {
+    public static void main(String[] args) {
+        int[] a = {1, 2, 3, 4, 5};
+        int[] b = a.clone();   // b는 a의 복제를 참조
+
+        b[3] = 0; 
+
+        System.out.print("a = ");
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(" " + a[i]);
+        }
+
+        System.out.print("\nb = ");
+        for(int i = 0; i < b.length; i++) {
+            System.out.print(" " + b[i]);
+        }
+    }
+}
+```
+
+
+```
+실행 경과
+a = 1 2 3 4 5
+b = 1 2 3 0 4
+```
+
+
 # 클래스
