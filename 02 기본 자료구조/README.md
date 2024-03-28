@@ -167,5 +167,99 @@ a = 1 2 3 4 5
 b = 1 2 3 0 4
 ```
 
+![image3](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/02%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/images/3.png)
+
+
+## 배열 요소의 최댓값 구하기
+
+- 배열 a의 요소가 3개일 때 세 요소 a[0], a[1], a[2] 중 최댓값은 아래 프로그램처럼 구할 수 있습니다.
+
+```java
+max = a[0];
+if (a[1] > max) max = a[1];
+if (a[2] > max) max = a[2];  
+```
+> 요소 개수가 3개이면 if문을 2개 작성합니다.
+
+- 요소가 4개이면 아래처럼 해야 합니다.
+
+```java
+max = a[0];
+if (a[1] > max) max = a[1];
+if (a[2] > max) max = a[2];
+if (a[3] > max) max = a[3];
+```
+> 요소 개수가 4개이면 if문을 3개 작성합니다.
+
+- a[0], a[1], ..., a[n-1]의 최댓값을 구하는 프로그램은 아래처럼 구현할 수 있습니다.
+
+```java
+max = a[0];
+for (i < 1; i < n; i++) {
+    if (a[i] > max) max = a[i];
+}
+```
+> 요소 개수가 n개이면 if문을 n-1개 작성합니다.
+
+![image4](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/02%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/images/4.png)
+
+- 방금 작성한 알고리즘에 따라 배열 a의 요소에서 최댓값을 구하는 과정은 다음과 같습니다.
+
+![image5](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/02%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/images/5.png)
+
+> 스캔 과정에서 if문의 제어식 a[i] > max가 참일 때(살펴보고 있는 요소 a[i]의 값이 최댓값 max보다 클 때) a[i]의 값을 max에 대입합니다. 결과적으로 배열의 모든 요소에 대해 스캔을 완료한 시점의 배열 a의 최대 요솟값은 max에 대입됩니다.
+
+### 배열 요소의 최대값을 구하는 메서드
+
+```java
+package chap02;
+import java.util.Scanner;
+
+public class MaxOfArray {
+    public static int maxOf(int[] a) {
+        int max = a[0];
+        for (int i = 1; i < a.length; i++) {
+            if (a[i] > max)
+                max = a[i];
+        }
+
+        return max;
+    }
+
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+
+        System.out.println("키의 최댓값을 구합니다.");
+        System.out.print("사람 수 : ");
+        int num = stdIn.nextInt(); // 배열의 갯수를 입력 받음 
+
+        int[] height = new int[num]; // 배열의 갯수가 num인 배열을 생성
+
+        for (int i = 0; i < num; i++) {
+            System.out.print("height[" + i + "]:");
+            height[i] = stdIn.nextInt();
+        }
+
+        System.out.println("최댓값은 " + maxOf(height) + "입니다.");
+    }
+}
+```
+
+```
+실행 결과 
+
+키의 최대값을 구합니다.
+사람 수 : 5
+height[0]: 172
+height[1]: 153
+height[2]: 192
+height[3]: 140
+height[4]: 165
+최대값은 192입니다.
+```
+
+![image6](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/02%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/images/6.png)
+
+> 인수 height는 배열 본체를 참조하는 배열 변수입니다. 따라서 메서드 maxOf에 전달하는 것은 **배열 본체에 대한 참조**입니다. 호출한 메서드 maxOf
 
 # 클래스
