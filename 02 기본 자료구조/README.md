@@ -260,6 +260,135 @@ height[4]: 165
 
 ![image6](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/02%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/images/6.png)
 
-> 인수 height는 배열 본체를 참조하는 배열 변수입니다. 따라서 메서드 maxOf에 전달하는 것은 **배열 본체에 대한 참조**입니다. 호출한 메서드 maxOf
+> 인수 height는 배열 본체를 참조하는 배열 변수입니다. 따라서 메서드 maxOf에 전달하는 것은 **배열 본체에 대한 참조**입니다. 호출한 메서드 maxOf에서는 배열 변수인 매개변수 a가 전달받은 참조로 초기화되므로 배열 변수 a는 배열 height의 본체를 참조합니다. 그 결과 메서드 maxOf 안의 배열 a는 사실상 main 메서드의 배열 height인 것입니다. 이런 원리로 배열을 전달하므로 메서드 maxOf 안에서는 전달받은 a.length로 얻을 수가 있고 각 요소를 a[i]로 액세스 할 수 있습니다.
+
+### 난수 사용해 배열 요소값 설정하기 
+
+```java
+package chap02;
+import java.util.Random; // (1)
+import java.util.Scanner;
+
+public class MaxOfArrayRand {
+    public static int maxOf(int[] a) {
+        int max = a[0];
+        for (int i = 1; i < a.length; i++) {
+            if (a[i] > max) {
+                max = a[i];
+            }
+        }
+
+        return max;
+    }
+
+    public static void main(String[] args) {
+        Random rand = new Random(); // (2)
+        Scanner stdIn = new Scanner(System.in);
+
+        System.out.pritnln("키의 최대값을 구합니다.");
+        Systen.out.print("사람 수 : ");
+        int num = stdIn.nextInt(); // 배열의 요소수를 입력받음
+ 
+        int[] height = new int[num]; // 요소수가 num인 배열을 생성
+
+        System.out.println("키 값은 아래와 같습니다.");
+        for (int i = 0; i < num; i++) {
+            height[i] = 100 + rand.nextInt(90); // 요소의 값을 난수로 결정 - (3)
+        }
+
+        System.out.println("최댓값은 " + maxOf(height) + "입니다.");
+    }
+}
+```
+> 사람 수를 입력하면 곧바로 그 사람 수만큼 키의 값이 자동으로 생성되고 최댓값이 출력됩니다.
+
+- 난수를 생성할 때 java.util 패키지의 Random 클래스를 사용합니다.
+- 난수를 생성하는 단계 
+    - (1) Random 클래스를 간단한 이름으로 사용하기 위해 import 선언을 합니다.
+    - (2) Random 클래스형의 변수(이 프로그램에서는 rand)를 만들기 위한 선언을 합니다.
+    - (3) 변수 rand에 대한 난수를 생성하는 메서드 nextInt를 호출합니다.
+- nextInt(n)가 반환하는 것은 0부터 n - 1 까지의 난수입니다. 이 프로그램의 경우 0부터 89까지의 난수가 생성됩니다.
+
+> 진짜 난수, 의사 난수
+>
+> 로또 복권에서 번호가 적힌 공을 손으로 하나하나 꺼내 당첨번호를 결정하는 과정은 '진짜 난수'를 생성합니다. 의사 난수에서 의사는 실제와 비슷하다는 뜻입니다.
+
+> 컴퓨터에서 생성하는 난수는 진짜 난수가 아닙니다.
+>
+> 컴퓨터 과학에서 난수는 보통 특정 입력값이나 컴퓨터 환경에 따라 무작위로 선택한 것처럼 보이는 난수를 생성합니다. 그런데 srand 메서드에 전달한 seed(씨앗)의 값과 컴퓨터 환경이 같다면 그 결과값은 항상 같습니다. 결국 컴퓨터에서 생성된 모든 난수는 미리 컴퓨터가 계산해 둔 의사난수 입니다. 컴퓨터는 계산된 결과만 가지고 난수를 생성하는데, 이 계산된 결과는 입력값에 의해 결저오디므로 이 값으로 임의의 난수를 생성할 수는 없습니다(컴퓨터를 처음 켜면 난수표를 생성하여 보관한다고 생각하면 됩니다).
+>
+> seed(씨앗값) 1을 넣은 경우의 예: 항상 1 -> 105 -> 999 -> 1002 ...의 순서로 숫자를 생성<br>
+> seed(씨앗값) 2를 넣은 경우의 예: 항상 2 -> 892 -> 7291 -> 10123 ...의 순서로 숫자를 생성 
+> ...
+> 
+> 따라서 프로그램에서 매번 같은 방법(같은 seed(씨앗)을 사용해)으로 난수를 가져오면 처음 실행할 떄 이외에는 난수라고 할 수 없습니다. 그래서 보통 seed(씨앗)라 불리는 수를 srand 메서드에 매개변수로 매번 다르게 전달해 항상 다른 의사 난수를 생성해야 합니다. 이때 seed(씨앗) 값을 항상 다르게 주기 위해 현재 시간을 이용하는 것이 일반적입니다. 현재 시간은 매 순간마다 바뀌므로 이전에 발생한 의사 난수를 다시 생성하지는 않습니다.
+
+## 배열 요소를 역순으로 정렬하기 
+
+- 다음은 순서를 뒤바꾸는 과정을 나타낸 그림입니다.
+
+![image7](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/02%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/images/7.png)
+> 배열의 요소를 역순으로 정렬
+
+- 교환 횟수는 **요소 갯수/2**이며 이 나눗셈에서 나머지는 버립니다. 위 예제에서 볼 수 있듯이 요소 개수가 홀수인 경우 가운데 요소는 교환할 필요가 없기 때문입니다.
+> 정수/정수 연산은 나머지를 버리고 정수부만 얻을 수 있으므로 나머지를 버리기에 좋습니다(요소 개수가 7인 경우 교환 횟수는 7/2, 곧 3입니다).
+
+- 요소 개수가 n개인 배열 요소를 역순으로 정렬하는 알고리즘
+
+```java
+for (i = 0; i < n / 2; i++) {
+    // a[i]와 a[n - i - 1]의 값을 교환
+}
+```
+
+### 두 값의 교환 
+- 배열의 역순 정렬은 교환이 총 n/2회 필요합니다. 
+
+
+![image8](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/02%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/images/8.png)
+> 두 값의 교환
+
+- 여기서 사용하는 작업용 변수를 t라 하면 교환 과정은 아래와 같습니다.
+    - x값을 t에 보관 
+    - y값을 x에 대입 
+    - t에 보관한 처음 x값을 y에 대입
+
+```java
+t = a[idx1];
+a[idx1] = a[idx2];
+a[idx2] = t;
+```
+
+
+```java
+public static void swap(int[] a, int idx1, int idx2) {
+    int t = a[idx1]; a[idx1] = a[idx2]; a[idx2] = t;  // a[idx1]과 a[idx2]의 값을 교환
+}
+```
+
+```java
+package chap02;
+import java.util.Scanner;
+
+public class ReverseArray {
+    public static void swap(int[] a, int idx1, int idx2) {
+        int t = a[idx1]; a[idx1] = a[idx2]; a[idx2] = t;  // a[idx1]과 a[idx2]의 값을 교환
+    }
+
+    public static void reverse(int[] a) {
+        for (int i = 0; i < a.length / 2; i++) {
+            swap(a, i, a.length - i - 1);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+
+        System.out.print("요솟수 : ");
+        int num = stdIn.nextInt();
+    }
+}
+```
+
 
 # 클래스
