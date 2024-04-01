@@ -414,17 +414,17 @@ import java.util.Scanner;
 public class ArrayEqual {
     // 두 배열 a, b의 모든 요소가 같은가?
     public static boolean equals(int[] a, int[] b) {
-        if (a.length != b.length) {
+        if (a.length != b.length) {  // (1)
             return false;
         }
 
-        for (int i = 0; i < a.length; i++) {
+        for (int i = 0; i < a.length; i++) { // (2)
             if (a[i] != b[i]) {
                 return false;
             }
         }
 
-        return true;
+        return true;  // (3)
     }
 
     public static void main(String[] args) {
@@ -436,12 +436,57 @@ public class ArrayEqual {
         int[] a = new int[na]; // 요솟수가 na인 배열
 
         for (int i = 0; i < na; i++) {
-                   
+            System.out.print("a[" + i + "] : ");
+            a[i] = stdIn.nextInt();
         }
 
-    }
+        System.out.print("배열 b의 요솟수 : ");
+        int nb = stdIn.nextInt(); // 배열 b의 요솟수
+        
+        int[] b = new int[nb]; // 요솟수가 nb인 배열
+
+        for (int i = 0; i < nb; i++) {
+            System.out.print("b[" + i + "] : ");
+            b[i] = stdIn.nextInt();
+        }
+
+        System.out.println("배열 a와 b는 " + (equals(a, b) ? "같습니다." : "같지 않습니다."));
+     }
 }
+```
+
+- 두 배열 a, b의 모든 요소가 같은가의 판단은 아래처럼 세 단계로 수행합니다.
+    - (1) 두 배열 a,b의 요솟수(길이)를 비교합니다. 요솟수가 다르면 배열이 같지 않다는 것이 분명합니다. - (a) 
+    - (2) 이 for문에서는 두 배열을 처음부터 스캔하면서 요소 a[i]와 b[i]의 값을 비교하는 것을 반복합니다. 이 과정에서 값이 다른 요소를 발견하면 반환문을 실행하여 false를 반환합니다. - (b)
+    - 프로그램의 흐름이 여기에 도달하면 for문이 중단되지 않고 끝까지 실행된 경우입니다. 두 배열은 같다고 판단할 수 있으므로 true를 반환합니다. - (c)
+
+![image9](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/02%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/images/9.png)
+> 두 배열의 비교
+
+## 기수 변환 
+- 10진수 정수를 n진수 정수로 변환하려면 정수를 n으로 나눈 나머지를 구하는 동시에 그 몫에 대해 나눗셈을 반복해야 합니다.
+- 이 과정을 몫이 0이 될 때까지 반복하고, 이런 과정으로 구한 나머지를 거꾸로 늘어놓은 숫자가 기수로 변환한 숫자입니다. 
+
+![image10](https://raw.githubusercontent.com/yonggyo1125/lecture_algorithm/master/02%20%EA%B8%B0%EB%B3%B8%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/images/10.png)
+
+- 16진수는 아래 16의 문자로 표현되는 수입니다.
 
 ```
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F
+```
+
+- 기수가 10단위를 넘는 경우 0 ~ 9에 이어지는 숫자로 알파벳 문자인 A, B, ...를 사용합니다. A, B, ...는 10진수의 10, 11, ...에 해당합니다. 
+
+> 36진수는 숫자 0 ~ 9와 알파벳 A ~ Z를 이용하여 나타낼 수 있습니다.
+
+
+> 정수 상수의 n진수 표현 방법
+>
+> 정수 상수는 정수 계열의 값을 나태내는 10진수(기수 10), 8진수(기수 8) 또는 16진수(기수 16)를 말합니다. 정수 상수는 변경할 수 없는 정수값을 나타낼 때 사용합니다. 정수 상수가 0x 또는 0X로 시작되는 경우는 16진수이고, 숫자 0으로 시작되는 경우 8진수입니다. 두 경우에 해당하지 않으면 10진수로 간주합니다.
+>
+> 0x1C  // 10진수 28에 대한 16진수 표기<br>
+> 034   // 10진수 28에 대한 8진수 표기
+
+
 
 # 클래스
