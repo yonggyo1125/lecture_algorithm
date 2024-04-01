@@ -488,5 +488,16 @@ public class ArrayEqual {
 > 034   // 10진수 28에 대한 8진수 표기
 
 
+```java
+package chap02;
+import java.util.Scanner;
+
+public class CardConvRev {
+    // 정수값 x를 r진수로 변환하여 배열 d에 아랫자리부터 넣어두고 자릿수를 반환합니다.
+    
+}
+```
+
+
 
 # 클래스
